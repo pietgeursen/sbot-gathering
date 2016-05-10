@@ -1,7 +1,6 @@
 var api = require('./api')
 var pull = require('pull-stream')
 var moment = require('moment')
-var Event  = require('./eventType');
 
 module.exports = {
   name: 'events',
@@ -24,7 +23,6 @@ module.exports = {
       })) 
     }
     function create(event, cb) {
-      //var e = Event(event)
       sbot.publish(event, cb)
     }
     function linksToEvent(eventId, opts) {
