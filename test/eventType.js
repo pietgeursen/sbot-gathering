@@ -1,6 +1,6 @@
 var test = require('tape');
-var validEvent = require('../util/validEvent');
-var Event = require('../util/eventType');
+var validEvent = require('./util/validEvent');
+var Event = require('../eventType');
 
 test('trying to create an invalid event throws', function(t) {
   t.throws(function() {

@@ -2,11 +2,11 @@ var pull = require('pull-stream')
 var test = require('tape');
 var moment = require('moment')
 
-var validEvent = require('../util/validEvent')
+var validEvent = require('./util/validEvent')
 validEvent.type = 'event'
 
 test('find', function(t) {
-  var testBot = require('../util/createTestSbot')('teste1')
+  var testBot = require('./util/createTestSbot')('teste1')
 
   testBot.events.create(validEvent,function(err, data) {
   })

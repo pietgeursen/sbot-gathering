@@ -1,7 +1,7 @@
 var api = require('./api')
 var pull = require('pull-stream')
 var moment = require('moment')
-var Event  = require('./util/eventType');
+var Event  = require('./eventType');
 
 module.exports = {
   name: 'events',

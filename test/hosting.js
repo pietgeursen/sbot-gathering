@@ -1,7 +1,7 @@
 var test = require('tape')
 var pull = require('pull-stream')
 var ssbKeys = require('ssb-keys')
-var validEvent = require('../util/validEvent')
+var validEvent = require('./util/validEvent')
 validEvent.type = 'event'
 
 var createSbot = require('scuttlebot')

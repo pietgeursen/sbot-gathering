@@ -2,11 +2,11 @@ var pull = require('pull-stream')
 var test = require('tape');
 var moment = require('moment')
 
-var validEvent = require('../util/validEvent')
+var validEvent = require('./util/validEvent')
 validEvent.type = 'event'
 
 test('findFuture', function(t) {
-  var testBot = require('../util/createTestSbot')('teste2')
+  var testBot = require('./util/createTestSbot')('teste2')
   var futureDateTime = moment().add(1, 'days').toDate()
   var pastDateTime  = moment().subtract(1, 'days').toDate()
 
