@@ -6,16 +6,9 @@ var Event  = require('./util/eventType');
 module.exports = {
   name: 'events',
   version: '0.0.0',
-  manifest: {
-    find: 'source',
-    future: 'source',
-    hosting: 'source',
-    commentsOnEvent: 'source',
-    create: 'async'
-  },
+  manifest: api,
   permissions: {},
   init: function(sbot, config){
-
     function find(opts){
       var _opts = Object.assign({type: 'event', live: true}, opts)
       return sbot.messagesByType(_opts)
@@ -61,6 +54,7 @@ module.exports = {
       future: future,
       create: create,
       hosting: hosting,
+      linksToEvent: linksToEvent,
       commentsOnEvent: commentsOnEvent,
       rsvpsOnEvent: rsvpsOnEvent
       }
