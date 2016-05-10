@@ -6,7 +6,7 @@ var validEvent = require('./util/validEvent')
 validEvent.type = 'event'
 
 var createSbot = require('scuttlebot')
-  .use(require('../event-sbot-plugin'))
+  .use(require('../'))
 
 test('can get all rsvps on an event and filter by type vote', function(t) {
   var pietKey = ssbKeys.generate()

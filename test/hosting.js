@@ -5,7 +5,7 @@ var validEvent = require('./util/validEvent')
 validEvent.type = 'event'
 
 var createSbot = require('scuttlebot')
-  .use(require('../event-sbot-plugin'))
+  .use(require('../'))
 
 test('find gets all messages by all authors, hosting gets only messages by me', function(t) {
   var pietKey = ssbKeys.generate()

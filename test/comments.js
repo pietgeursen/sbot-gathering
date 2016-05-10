@@ -6,7 +6,7 @@ var validEvent = require('./util/validEvent')
 validEvent.type = 'event'
 
 var createSbot = require('scuttlebot')
-  .use(require('../event-sbot-plugin'))
+  .use(require('../'))
 
 test('can get all comments on an event and filter by type post', function(t) {
   var pietKey = ssbKeys.generate()
