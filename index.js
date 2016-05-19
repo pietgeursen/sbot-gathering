@@ -50,18 +50,14 @@ module.exports = {
     function myRsvps(opts) {
       var _opts = Object.assign({type: 'rsvp', live: true}, opts)
       return pull(
-        sbot.createHistoryStream(_opts), //all my messages.
+        sbot.messagesByType(_opts),
         pull.filter(function(message) {
-          console.log(message);
-          return true
+          return message.value.author == sbot.whoami().id
+        }),
+        pull.map(function(message) {
+          return message.value.content
         })
-        
       )
-      return pull(
-        sbot.links(_opts), 
-        pull.asyncMap(function(data, cb) {
-          sbot.get(data.key, cb)
-        }))
     }
     return {
       find:find,
@@ -70,7 +66,9 @@ module.exports = {
       hosting: hosting,
       linksToEvent: linksToEvent,
       commentsOnEvent: commentsOnEvent,
-      rsvpsOnEvent: rsvpsOnEvent
+      rsvpsOnEvent: rsvpsOnEvent,
+      myRsvps: myRsvps
+
       }
     }  
 }
