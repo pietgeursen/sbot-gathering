@@ -11,7 +11,7 @@ var createSbot = require('scuttlebot')
 
 test('can get all votes by me and and filter by source type event', function(t) {
   var pietKey = ssbKeys.generate()
-  var sbot = createSbot({temp:'piety', keys: pietKey})
+  var sbot = createSbot({temp:'pieterrrr', keys: pietKey})
   var katieKey = ssbKeys.generate()
   var katie = sbot.createFeed(katieKey)
 
