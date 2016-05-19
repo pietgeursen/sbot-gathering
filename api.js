@@ -5,7 +5,9 @@ module.exports = {
   commentsOnEvent: 'source',
   linksToEvent: 'source',
   rsvpsOnEvent: 'source',
-  create: 'async'
+  create: 'async',
+  rsvpToEvent: 'async',
+  myRsvps: 'source'
 }
 
 
