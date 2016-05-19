@@ -44,7 +44,23 @@ module.exports = {
       return pull(
         linksToEvent(eventId, opts), 
         pull.filter(function(data) {
-          return data.content.type == 'vote' 
+          return data.content.type == 'rsvp' 
+        }))
+    }
+    function myRsvps(opts) {
+      var _opts = Object.assign({type: 'rsvp', live: true}, opts)
+      return pull(
+        sbot.createHistoryStream(_opts), //all my messages.
+        pull.filter(function(message) {
+          console.log(message);
+          return true
+        })
+        
+      )
+      return pull(
+        sbot.links(_opts), 
+        pull.asyncMap(function(data, cb) {
+          sbot.get(data.key, cb)
         }))
     }
     return {
