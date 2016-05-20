@@ -24,10 +24,8 @@ test('findFuture', function(t) {
   })
 
   pull(testBot.events.future(),pull.take(2), pull.collect(function(err, records) {
-   t.true(moment(records[0].value.content.dateTime).isAfter(new Date()), 'event is in the future') 
-   t.equal(records[0].value.sequence, 1, 'event has sequence 1') 
-   t.true(moment(records[1].value.content.dateTime).isAfter(new Date()), 'event is in the future') 
-   t.equal(records[1].value.sequence, 3, 'event has sequence 3') 
+   t.true(moment(records[0].dateTime).isAfter(new Date()), 'event is in the future') 
+   t.true(moment(records[1].dateTime).isAfter(new Date()), 'event is in the future') 
    t.end()
    testBot.close()
    return false

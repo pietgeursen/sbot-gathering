@@ -13,9 +13,15 @@ module.exports = {
       return sbot.messagesByType(_opts)
     }
     function future(opts) {
-      return pull(find(opts), pull.filter(function(event) {
-        return moment(event.value.content.dateTime).isAfter(moment())
-      }))
+      return pull(
+        find(opts), 
+        pull.filter(function(event) {
+          return moment(event.value.content.dateTime).isAfter(moment())
+        }),
+        pull.map(function(event) {
+					return Object.assign({}, event.value.content, {author: event.value.author, id: event.key})
+        })        
+      )
     }
     function hosting(opts){
       return pull(find(opts), pull.filter(function(event) {
