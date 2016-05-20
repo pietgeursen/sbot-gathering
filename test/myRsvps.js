@@ -21,7 +21,7 @@ test('can get all votes by me and and filter by source type event', function(t) 
       katie.publish(Rsvp(id, 1),function(err, vote) {
         pull(sbot.events.myRsvps({live: false}), pull.collect(function(err, data) {
           t.equal(data.length, 1, 'only got my rsvp, not katies')
-          t.deepEqual(data[0], vote.value.content)
+          t.deepEqual(data[0], vote.value.content.vote)
           sbot.close()
           t.end()
         }))

@@ -55,7 +55,7 @@ module.exports = {
           return message.value.author == sbot.whoami().id
         }),
         pull.map(function(message) {
-          return message.value.content
+          return message.value.content.vote
         })
       )
     }
