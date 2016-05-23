@@ -1,7 +1,7 @@
 {
-  "name": "sbot-events",
+  "name": "sbot-gatherings",
   "version": "1.0.0",
-  "description": "'events plugin for secure scuttlebot'",
+  "description": "'gatherings plugin for secure scuttlebot'",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js | tap-spec"

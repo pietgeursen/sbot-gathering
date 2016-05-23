@@ -3,52 +3,52 @@ var pull = require('pull-stream')
 var moment = require('moment')
 
 module.exports = {
-  name: 'events',
+  name: 'gatherings',
   version: '0.0.0',
   manifest: api,
   permissions: {},
   init: function(sbot, config){
     function find(opts){
-      var _opts = Object.assign({type: 'event', live: true}, opts)
+      var _opts = Object.assign({type: 'gathering', live: true}, opts)
       return sbot.messagesByType(_opts)
     }
     function future(opts) {
       return pull(
         find(opts), 
-        pull.filter(function(event) {
-          return moment(event.value.content.dateTime).isAfter(moment())
+        pull.filter(function(gathering) {
+          return moment(gathering.value.content.dateTime).isAfter(moment())
         }),
-        pull.map(function(event) {
-					return Object.assign({}, event.value.content, {author: event.value.author, id: event.key})
+        pull.map(function(gathering) {
+					return Object.assign({}, gathering.value.content, {author: gathering.value.author, id: gathering.key})
         })        
       )
     }
     function hosting(opts){
-      return pull(find(opts), pull.filter(function(event) {
-        return event.value.author === sbot.id 
+      return pull(find(opts), pull.filter(function(gathering) {
+        return gathering.value.author === sbot.id 
       })) 
     }
-    function create(event, cb) {
-      sbot.publish(event, cb)
+    function create(gathering, cb) {
+      sbot.publish(gathering, cb)
     }
-    function linksToEvent(eventId, opts) {
-      var _opts = Object.assign({dest: eventId, live: true}, opts)
+    function linksToGathering(gatheringId, opts) {
+      var _opts = Object.assign({dest: gatheringId, live: true}, opts)
       return pull(
         sbot.links(_opts), 
         pull.asyncMap(function(data, cb) {
           sbot.get(data.key, cb)
         }))
     }
-    function commentsOnEvent(eventId, opts){
+    function commentsOnGathering(gatheringId, opts){
         return pull(
-          linksToEvent(eventId, opts), 
+          linksToGathering(gatheringId, opts), 
           pull.filter(function(data) {
             return data.content.type == 'post' 
         }))
     }
-    function rsvpsOnEvent(eventId, opts){
+    function rsvpsOnGathering(gatheringId, opts){
       return pull(
-        linksToEvent(eventId, opts), 
+        linksToGathering(gatheringId, opts), 
         pull.filter(function(data) {
           return data.content.type == 'rsvp' 
         }))
@@ -70,9 +70,9 @@ module.exports = {
       future: future,
       create: create,
       hosting: hosting,
-      linksToEvent: linksToEvent,
-      commentsOnEvent: commentsOnEvent,
-      rsvpsOnEvent: rsvpsOnEvent,
+      linksToGathering: linksToGathering,
+      commentsOnGathering: commentsOnGathering,
+      rsvpsOnGathering: rsvpsOnGathering,
       myRsvps: myRsvps
 
       }

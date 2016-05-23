@@ -1,8 +1,8 @@
 var test = require('tape')
 var pull = require('pull-stream')
 var ssbKeys = require('ssb-keys')
-var validEvent = require('./util/validEvent')
-validEvent.type = 'event'
+var validGathering = require('./util/validGathering')
+validGathering.type = 'gathering'
 
 var createSbot = require('scuttlebot')
   .use(require('../'))
@@ -14,21 +14,21 @@ test('find gets all messages by all authors, hosting gets only messages by me', 
   var katie = sbot.createFeed(katieKey)
   var piet = sbot.createFeed(pietKey)
 
-  piet.add(validEvent,function(err, data) {})
-  katie.add(validEvent,function(err, data) {})
+  piet.add(validGathering,function(err, data) {})
+  katie.add(validGathering,function(err, data) {})
 
-  pull(sbot.events.find(), pull.take(2), pull.collect(function(err, events) {
-    t.notEqual(events.findIndex(function(event) {
-      return event.value.author ===  piet.id
+  pull(sbot.gatherings.find(), pull.take(2), pull.collect(function(err, gatherings) {
+    t.notEqual(gatherings.findIndex(function(gathering) {
+      return gathering.value.author ===  piet.id
     }), -1, 'message authored by piet')
-    t.notEqual(events.findIndex(function(event) {
-      return event.value.author ===  katie.id
+    t.notEqual(gatherings.findIndex(function(gathering) {
+      return gathering.value.author ===  katie.id
     }), -1, 'message authored by katie')
-    t.equal(events.length, 2, 'got both events') 
+    t.equal(gatherings.length, 2, 'got both gatherings') 
     
-    pull(sbot.events.hosting({live: false}), pull.collect(function (err, events){
-      t.equal(events.length, 1, 'there is only one event')
-      t.equal(events[0].value.author, piet.id, 'and piet is the author')
+    pull(sbot.gatherings.hosting({live: false}), pull.collect(function (err, gatherings){
+      t.equal(gatherings.length, 1, 'there is only one gathering')
+      t.equal(gatherings[0].value.author, piet.id, 'and piet is the author')
       t.end()
       sbot.close()
     }))

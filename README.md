@@ -1,4 +1,4 @@
-# sbot-events
-Secure scuttlebot plugin for facebook style events
+# sbot-gatherings
+Secure scuttlebot plugin for facebook style gatherings
 
 ## Usage
