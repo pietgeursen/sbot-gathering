@@ -2,11 +2,11 @@ module.exports = {
   find: 'source',
   future: 'source',
   hosting: 'source',
-  commentsOnEvent: 'source',
-  linksToEvent: 'source',
-  rsvpsOnEvent: 'source',
+  commentsOnGathering: 'source',
+  linksToGathering: 'source',
+  rsvpsOnGathering: 'source',
   create: 'async',
-  rsvpToEvent: 'async',
+  rsvpToGathering: 'async',
   myRsvps: 'source'
 }
 
