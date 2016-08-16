@@ -8,6 +8,7 @@ module.exports = {
   manifest: api,
   permissions: {},
   init: function(sbot, config){
+    const gatherings = []
     function find(opts){
       var _opts = Object.assign({type: 'gathering', live: true}, opts)
       return sbot.messagesByType(_opts)
@@ -31,7 +32,7 @@ module.exports = {
     function create(gathering, cb) {
       sbot.publish(gathering, cb)
     }
-    function linksToGathering(gatheringId, opts) {
+    function linksToGathering(opts) {
       var _opts = Object.assign({dest: gatheringId, live: true}, opts)
       return pull(
         sbot.links(_opts), 
@@ -39,12 +40,25 @@ module.exports = {
           sbot.get(data.key, cb)
         }))
     }
-    function commentsOnGathering(gatheringId, opts){
-        return pull(
-          linksToGathering(gatheringId, opts), 
-          pull.filter(function(data) {
-            return data.content.type == 'post' 
-        }))
+    function commentsOnGatherings(opts){
+      const gatherings = []
+      pull(
+        find(),
+        pull.drain(function(gathering) {
+         gatherings.push(gathering) 
+      }))
+      var _opts = Object.assign({type: 'post', live: true}, opts)
+      return pull(
+        sbot.messagesByType(_opts),
+        pull.filter(function(post) {
+          return gatherings.some(function(gathering) {
+            return gathering.id === post.mentions 
+          })
+        }),
+        pull.map(function(post) {
+         return post.value 
+        })
+      )
     }
     function rsvpsOnGathering(gatheringId, opts){
       return pull(
@@ -71,7 +85,7 @@ module.exports = {
       create: create,
       hosting: hosting,
       linksToGathering: linksToGathering,
-      commentsOnGathering: commentsOnGathering,
+      commentsOnGatherings: commentsOnGatherings,
       rsvpsOnGathering: rsvpsOnGathering,
       myRsvps: myRsvps
 
