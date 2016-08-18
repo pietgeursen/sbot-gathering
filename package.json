@@ -1,6 +1,6 @@
 {
   "name": "sbot-gatherings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "'gatherings plugin for secure scuttlebot'",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "ssb-keys": "^5.0.1",
+    "ssb-msg-schemas": "^6.2.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1"
   },
