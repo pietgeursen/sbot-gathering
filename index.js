@@ -23,17 +23,21 @@ module.exports = {
         })
       )
     }
-    function findAuthorNameOfMessage (msg, cb) {
+    function findAuthorNameOfMessage (id, cb) {
+      console.log('finding author of msg:', id)
       var _opts = {type: 'about', live: false}
       pull(
         sbot.messagesByType(_opts),
+        pull.filter(function (about) {
+          return about.value.content.about === id
+        }),
         pull.collect(function (err, array) {
           if (err) cb(err)
           var names = array.map(function (about) {
             return about.value.content.name
           })
 
-          cb(null, names[names.length - 1])
+          cb(null, names.reverse()[0])
         })
       )
     }
@@ -66,7 +70,6 @@ module.exports = {
       pull(
         find(),
         pull.drain(function (gathering) {
-          console.log('pushed a gathering')
           gatherings.push(gathering)
         }))
 
@@ -79,7 +82,6 @@ module.exports = {
           })
         }),
         pull.map(function (post) {
-          console.log('returned a post')
           return post.value
         })
       )

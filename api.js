@@ -7,7 +7,6 @@ module.exports = {
   rsvpsOnGathering: 'source',
   create: 'async',
   rsvpToGathering: 'async',
-  myRsvps: 'source'
+  myRsvps: 'source',
+  findAuthorNameOfMessage: 'async'
 }
-
-
