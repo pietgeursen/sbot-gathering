@@ -30,7 +30,9 @@ exports.gives = nest({
 })
 ```
 
-## Message types
+## How messages are published
+
+A gathering message is extremely simple. It is only has type `gathering`. Location, time, description etc are all seperate messages that link to the gathering message. This makes for an easily extendable set of messages. 
 
 ## API
 
