@@ -74,18 +74,15 @@ Sets the physical location of the gathering and calls cb when done. Valid `opts`
 - `id` (required) - The id of the gathering to name
 - `location` (required) - The time of the gathering 
 
-### gatherings.async.addHost(opts={}, cb)
-
-Adds a host of the gathering and calls cb when done. Valid `opts` keys include
-
-- `id` (required) - The id of the gathering to name
-- `host` (required) - The id of the host 
+### gatherings.async.host(opts={}, cb)
 
 Adds or removes a host of the gathering and calls cb when done. Valid `opts` keys include
 
 - `id` (required) - The id of the gathering to name
 - `host` (required) - The id of the host 
-- `isHosting` (required) - `1` if hosting, `0` if not
+- `val` (required) - `1` if hosting, `0` if not
+
+### gatherings.async.rsvp(opts={}, cb)
 
 Sets user's rsvp of the gathering to attending / maybe / notGoing and calls cb when done. Valid `opts` keys include
 
