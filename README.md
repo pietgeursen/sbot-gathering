@@ -26,11 +26,11 @@ exports.gives = nest({
     'setUTCDateTime',
     'setLocation',
     'setDescription',
-    'setHosts',
+    'host',
+    'rsvp',
   ]
 })
 ```
-
 
 ## Message types
 
@@ -45,6 +45,53 @@ Creates a new gathering message and calls cb when done. Valid `opts` keys includ
 - `location` (optional) - The location of the gathering
 - `description` (optional) - The desctription of the gathering 
 - `hosts` (optional) - Hosts of the gathering
+
+### gatherings.async.setName(opts={}, cb)
+
+Sets the name of the gathering and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `name` (required) - The name of the gathering 
+
+### gatherings.async.setUTCDateTime(opts={}, cb)
+
+Sets the time of the gathering and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `utcDateTime` (required) - The time of the gathering 
+
+### gatherings.async.setLocation(opts={}, cb)
+
+Sets the physical location of the gathering and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `location` (required) - The time of the gathering 
+
+### gatherings.async.setDescription(opts={}, cb)
+
+Sets the physical location of the gathering and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `location` (required) - The time of the gathering 
+
+### gatherings.async.addHost(opts={}, cb)
+
+Adds a host of the gathering and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `host` (required) - The id of the host 
+
+Adds or removes a host of the gathering and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `host` (required) - The id of the host 
+- `isHosting` (required) - `1` if hosting, `0` if not
+
+Sets user's rsvp of the gathering to attending / maybe / notGoing and calls cb when done. Valid `opts` keys include
+
+- `id` (required) - The id of the gathering to name
+- `host` (required) - The id of the host 
+- `val` (required) - `1` if attending, `0` if maybe, `-1` if not
 
 ## Install
 
