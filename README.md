@@ -2,7 +2,7 @@
 
 > '[patchcore](https://github.com/ssbc/patchcore) gatherings [depject](https://github.com/depject/depject) plugin for [secure scuttlebutt](https://github.com/ssbc/secure-scuttlebutt)'
 
-`gives` pull-stream sources and async methods for finding and publishing gatherings on patchwork
+`gives` pull-stream sources and async methods for finding and publishing gatherings on secure scuttlebutt
 
 ## Needs
 ```js
@@ -30,9 +30,9 @@ exports.gives = nest({
 })
 ```
 
-## How messages are published
+## How gathering messages work
 
-A gathering message is extremely simple. It is only has type `gathering`. Location, time, description etc are all seperate messages that link to the gathering message. This makes for an easily extendable set of messages. 
+A gathering message is extremely simple. It is little more than intent to have a `gathering`. Location, time, description etc are all `about` messages that link to the gathering message. Hopefully we can reuse these about messages to add metadata on completely different things. Examples could be publishing a location message about a pub or a photo.
 
 ## API
 
