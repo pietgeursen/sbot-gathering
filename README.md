@@ -3,7 +3,7 @@
 > '[patchcore](https://github.com/ssbc/patchcore) gatherings [depject](https://github.com/depject/depject) plugin for [secure scuttlebutt](https://github.com/ssbc/secure-scuttlebutt)'
 
 ## About
-`gives` pull-stream sources and observables for building views of gatherings on patchwork
+`gives` pull-stream sources and async methods for publishing gatherings on patchwork
 
 ## Needs
 ```js
