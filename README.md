@@ -16,8 +16,7 @@ exports.needs = nest({
 ```js
 exports.gives = nest({
   'gatherings.pull': [
-    'upcoming',
-    'hosting',
+    'find'
   ],
   'gatherings.async': [
     'create',
@@ -34,6 +33,15 @@ exports.gives = nest({
 ## Message types
 
 ## API
+
+### gatherings.pull.find(opts={}, cb)
+
+Returns a new [pull-stream](https://pull-stream.github.io/) of gatherings. Valid `opts` keys include
+
+- `past` (default: `false`) - `true`: Get all gatherings whose utcDateTime is from the past
+- `future` (default: `true`) - `true`: Get all gatherings whose utcDateTime is in th efuture
+- `hostedBy` (optional) - Get gatherings hosted by a given id
+- `attendedBy` (optional) - Get gatherings attended by a given id
 
 ### gatherings.async.create(opts={}, cb)
 
